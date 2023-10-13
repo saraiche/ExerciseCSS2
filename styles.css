@@ -10,39 +10,48 @@ body{
 
 #container{
     width: 80%;
+    min-height: 650px;
     border: 1px solid black;    
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-template-rows: max-content max-content 80% minmax(5%, auto);
 }
 
 .header{
-    height: 80px;
+    place-content: center;
     background-color: red;
-    width: calc(100% - 20px);
     color: white;
-    line-height: 80px;
-    text-align: center;
+    padding: 10px 10px;
+    grid-column: 1/3; /*grid-column: 1/span 2*/
+    display: grid;
     border-bottom: 3px dashed black;
-    padding: 0 10px;
+    min-height: calc(80px - 10px);
 }
 
 .nav{
+    grid-column: 1/3;
+    display: grid;
+    place-items: center;
+
     background-color: lightblue;
     overflow: hidden; /*SI EL TEXTO SE SALE, OCULTA LAS BARRAS DE NAVEGACIÓN*/
     border-bottom: 1px solid black;
 }
 
+.nav ul {
+    display: inline-block;
+    justify-content: center;
+}
+
 .nav ul li {
-    float: left;
     list-style: none;
     margin: 10px;
-    line-height: 30px;
+    float: left;
 }
 
 .content{
-    float: left;
-    width: calc(70% - 40px);
     background-color: green;
-    min-height: 500px;
     padding: 10px 20px 0 20px;
 }
 
@@ -64,9 +73,6 @@ body{
 
 .aside {
     background-color: orange;
-    float: left;
-    width: calc(30% - 20px);    
-    min-height: 500px;  
     padding: 10px 10px 0 10px;
 }
 
@@ -75,17 +81,17 @@ body{
 }
 
 .footer{
+    grid-column: 1 / span 2;
+    display: grid;
+    place-items: center;
+
     background-color: black;
     color: white;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
     text-align: center;
+    grid-column: 1/3;
 }
 
-.clearfix{
-    clear: both;
-}
+
 
 /* unvisited link */
 a:link {
@@ -97,16 +103,7 @@ a:link {
     color: purple;
   }
 
-  /*Large*/
-  @media (max-width: 992px) {
-    .header {
-        font-size: 70%;
-    }
 
-    .aside{
-        font-size: 70%;
-    }
-  }
 
   /*MEDIUM*/
   @media (max-width: 768px){
@@ -116,17 +113,13 @@ a:link {
   }
 
   /*Small*/
-  @media (max-width: 576px){
-    .header {
-        font-size: 70%;
-    }
+  @media (max-width: 576px){    
 
     .header h1 {
         max-width: 500px;
         margin: auto;
-        white-space: nowrap;
+        white-space: wrap;
         overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     .nav {
@@ -138,12 +131,11 @@ a:link {
     }
 
     .content{
-        width: calc(60% - 40px);
         font-size: 70%;
     }
 
     .aside {
-        width: calc(40% - 20px);
+        font-size: 70%;
     }
 
     .aside h2{
